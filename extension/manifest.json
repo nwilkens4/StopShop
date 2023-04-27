@@ -1,10 +1,31 @@
 {
+    "manifest_version": 3,
+    "name": "Stop Shop",
     "version": "0.2.0",
+    "description": "Stop Shop chrome extension to set a timer for shopping websites",
+    "action":{
+        "default_popup": "popup.html",
+        "default_title": "Stop Shop"
+    },
+
+    "permissions": [
+        "tabs",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://*/*"
+    ],
+    "content_scripts": [
+        {
+            "matches":["<all_urls>"],
+            "js": ["popup.js"]
+
+        }],
     "configurations": [
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
         }
