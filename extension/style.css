@@ -32,11 +32,16 @@ body {
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
+    padding-left:10px;
+    
 }
   
   .menu {
     margin-bottom: 20px;
     background: #fff;
+    justify-content: left;
+    justify-items: left;
+    
     
   }
   
@@ -148,6 +153,8 @@ body {
         height:600px;
         font-size: 0.75rem;
     }
+    
+    
 
   
 
