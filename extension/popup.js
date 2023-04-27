@@ -40,7 +40,7 @@ function startTimer() {
 
   timerId = setTimeout(() => {
     // Close the Amazon tab
-    chrome.tabs.query({ url: 'https://www.amazon.com/*' }, (tabs) => {
+    chrome.tabs.query({ url: '*://*.amazon.com/*' }, (tabs) => {
       alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
       tabs.forEach(tab => {
         chrome.tabs.remove(tab.id);
