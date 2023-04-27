@@ -9,18 +9,36 @@
 
 <body>
   <div class="menu">
-    <h1 href="/" id="menu__logo"><i class="fa-solid fa-shop-slash"></i>Stop Shop</h1>
-    <button id="set-time-limit">Set Time Limit</button>
+    <h1>Stop Shop</h1>
+    <button id="set-user-info">Set account info</button>
+    <button id="set-time-limit">Set time limit</button>
+
   </div>
 
-  <div class="set-time-limit-container" style="display:none;">
-    <h2>Set Time Limit</h2>
-    <label for="hours">Hours:</label>
-    <input type="number" id="hours" name="hours" min="0" max="23">
-    <label for="minutes">Minutes:</label>
-    <input type="number" id="minutes" name="minutes" min="0" max="59">
-    <button id="start-timer">Start Timer</button>
+  <div class="set-user-info-container" style="display:none;">
+    <h2>Set account info</h2>
+    <form class="user_form">
+      <label for="name">Username:</label>
+      <input type="text" id="name" name="Username">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="Email">
+      <label for="phone">Phone Number:</label>
+      <input type="text" id="phone" name="Phone Number">
+      <input type="submit"> 
+    </form>
   </div>
+  <div class="set-time-limit-container" style="display:none;">
+    <h2>Set time limit</h2>
+    <form class="timer_form">
+      <label for="hours">Hours:</label>
+      <input type="number" id="hours" name="Hours" value=0>
+      <label for="minutes">Minutes:</label>
+      <input type="number" id="minutes" name="Minutes" value=0>
+      <input type="submit" name="Save"> 
+    </form>
+  </div>
+
+  <button id="start-timer"> Start timer </button>
 </body>
 
 </html>

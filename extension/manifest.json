@@ -21,14 +21,5 @@
             "matches":["<all_urls>"],
             "js": ["popup.js"]
 
-        }],
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
-        }
-    ]
+        }]
 }
