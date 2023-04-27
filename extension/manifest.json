@@ -10,7 +10,8 @@
 
     "permissions": [
         "tabs",
-        "scripting"
+        "scripting",
+        "notifications"
     ],
     "host_permissions": [
         "https://*/*"

@@ -9,15 +9,23 @@ function showTimeLimitContainer() {
     setTimeLimitContainer.style.display = 'block';
   });
 }
+//this doesnt work because iconUrl is deprecated and doesnt show up for mac
+// function showNotification(hours, minutes) {
+//   chrome.notifications.create({
+//     type: 'basic',
+//     iconUrl: '/Users/noahwilkens/Desktop/GitHub/StopShop/extension/images/slash.png',
+//     title: 'Stop Shopping!',
+//     message: `You've reached your time limit of ${hours} hours and ${minutes} minutes.`,
+//     icons: {
+//       128: '/Users/noahwilkens/Desktop/GitHub/StopShop/extension/images/slash.png',
+//       64: '/Users/noahwilkens/Desktop/GitHub/StopShop/extension/images/slash.png',
+//       32: '/Users/noahwilkens/Desktop/GitHub/StopShop/extension/images/slash.png',
+//       16: '/Users/noahwilkens/Desktop/GitHub/StopShop/extension/images/slash.png',
+//     },  
+//   });
+// }
 
-function showNotification(hours, minutes) {
-  chrome.notifications.create({
-    type: 'basic',
-    iconUrl: 'path/to/icon.png',
-    title: 'Stop Shopping!',
-    message: `You've reached your time limit of ${hours} hours and ${minutes} minutes.`,
-  });
-}
+
 
 function startTimer() {
   const hours = parseInt(document.getElementById('hours').value);
@@ -29,7 +37,8 @@ function startTimer() {
     chrome.tabs.query({ url: '*://*.amazon.com/*' }, (tabs) => {
       if (tabs && tabs.length > 0) {
         chrome.tabs.remove(tabs[0].id);
-        showNotification(hours, minutes);
+        // showNotification(hours, minutes);
+         alert(`Stop Shopping! You've reached your time limit of ${hours} hours and ${minutes} minutes.`);
       }
     });
   }, timeInSeconds * 1000);
