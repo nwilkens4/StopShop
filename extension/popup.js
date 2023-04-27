@@ -1,32 +1,69 @@
 let timerId;
 
+let hours;
+let minutes;
+
+let user_info = {
+  username : "",
+  email : "",
+  phone : ""
+}
+let timer_data = {
+  hours : 0,
+  minutes : 0
+}
+
+localStorage.setItem("user", user_info);
+localStorage.setItem("timer", timer_data);
+
 function showTimeLimitContainer() {
   const setTimeLimitButton = document.getElementById('set-time-limit');
   const setTimeLimitContainer = document.querySelector('.set-time-limit-container');
-
+  const setUserInfoButton = document.getElementById('set-user-info');
+  const setUserInfoContainer = document.querySelector('.set-user-info-container');
   setTimeLimitButton.addEventListener('click', () => {
+    console.log("clicked");
     setTimeLimitButton.style.display = 'none';
     setTimeLimitContainer.style.display = 'block';
   });
+  setUserInfoButton.addEventListener('click', () => {
+    console.log("clicked");
+    setUserInfoButton.style.display = 'none';
+    setUserInfoContainer.style.display = 'block';
+  });
 }
+
+
+
 function startTimer() {
-  const hours = parseInt(document.getElementById('hours').value);
-  const minutes = parseInt(document.getElementById('minutes').value);
-  const timeInSeconds = (hours * 60 * 60) + (minutes * 60);
+  const timeInMs =((timer_data.hours * 60 * 60) + (timer_data.minutes * 60)) * 1000;
 
   timerId = setTimeout(() => {
     // Close the Amazon tab
     chrome.tabs.query({ url: 'https://www.amazon.com/*' }, (tabs) => {
-      if (tabs && tabs.length > 0) {
-        chrome.tabs.remove(tabs[0].id);
-        alert(`Stop Shopping! You've reached your time limit of ${hours} hours and ${minutes} minutes.`);
-      }
+      alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
+      tabs.forEach(tab => {
+        chrome.tabs.remove(tab.id);
+      });
     });
-  }, timeInSeconds * 1000);
+  }, timeInMs);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   showTimeLimitContainer();
+  document.querySelector('.user_form').addEventListener('submit', (e) =>{
+    user_info.username = document.getElementById('name').value;
+    user_info.email = document.getElementById('email').value;
+    user_info.phone = document.getElementById('phone').value;
+    e.preventDefault()
+  })
+  document.querySelector('.timer_form').addEventListener('submit', (e) =>{
+    timer_data.hours = parseInt(document.getElementById('hours').value);
+    hours = timer_data.hours;
+    timer_data.minutes = parseInt(document.getElementById('minutes').value);
+    minutes = timer_data.minutes;
+    e.preventDefault();
+  })
 
 document.getElementById('start-timer').addEventListener('click', () => {
   if (timerId) {
@@ -34,4 +71,5 @@ document.getElementById('start-timer').addEventListener('click', () => {
   }
   startTimer();
 });
+
 });
