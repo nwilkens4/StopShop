@@ -37,7 +37,8 @@ function showTimeLimitContainer() {
 
 function startTimer() {
   const timeInMs =((timer_data.hours * 60 * 60) + (timer_data.minutes * 60)) * 1000;
-
+  const twentyPercentRemaining = Math.floor(timeInMs * 0.8);
+  
   timerId = setTimeout(() => {
     // Close the Amazon tab
     chrome.tabs.query({ url: '*://*.amazon.com/*' }, (tabs) => {
@@ -47,7 +48,19 @@ function startTimer() {
       });
     });
   }, timeInMs);
+
+  setTimeout(() => {
+    const remainingTime = twentyPercentRemaining / 1000; // convert to seconds
+    if (remainingTime < 60) {
+      alert(`Attention! You have 20% of your time remaining (${timeInMs - twentyPercentRemaining} seconds).`);
+    } else {
+      const remainingHours = Math.floor(remainingTime / 3600);
+      const remainingMinutes = Math.floor((remainingTime % 3600) / 60);
+      alert(`Attention! You have 20% of your time remaining (${remainingHours} hours and ${remainingMinutes} minutes).`);
+    }
+  }, twentyPercentRemaining);
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   showTimeLimitContainer();
