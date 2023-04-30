@@ -10,10 +10,10 @@ let timer_data = {
   minutes : 0
 }
 // if no data saved (first use), initialize " " and 0s
-if(localStorage.getItem("user") === undefined){
+if(localStorage.getItem("user") === null){
   localStorage.setItem("user", JSON.stringify(user_info))
 }
-if(localStorage.getItem("timer") === undefined){
+if(localStorage.getItem("timer") === null){
   localStorage.setItem("timer", JSON.stringify(timer_data));
 }
 
