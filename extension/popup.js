@@ -37,7 +37,7 @@ function showTimeLimitContainer() {
 
 function startTimer() {
   const timeInMs =((timer_data.hours * 60 * 60) + (timer_data.minutes * 60)) * 1000;
-  const twentyPercentRemaining = Math.floor(timeInMs * 0.8);
+  const eightyPercentComplete = Math.floor(timeInMs * 0.8);
   
   timerId = setTimeout(() => {
     // Close the Amazon tab
@@ -50,15 +50,15 @@ function startTimer() {
   }, timeInMs);
 
   setTimeout(() => {
-    const remainingTime = twentyPercentRemaining / 1000; // convert to seconds
+    const remainingTime = eightyPercentComplete / 1000; // convert to seconds
     if (remainingTime < 60) {
-      alert(`Attention! You have 20% of your time remaining (${timeInMs - twentyPercentRemaining} seconds).`);
+      alert(`Attention! You have 20% of your time remaining (${(timeInMs - eightyPercentComplete) * 0.001} seconds).`);
     } else {
       const remainingHours = Math.floor(remainingTime / 3600);
       const remainingMinutes = Math.floor((remainingTime % 3600) / 60);
       alert(`Attention! You have 20% of your time remaining (${remainingHours} hours and ${remainingMinutes} minutes).`);
     }
-  }, twentyPercentRemaining);
+  }, eightyPercentComplete);
 }
 
 
