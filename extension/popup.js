@@ -9,12 +9,21 @@ let timer_data = {
   hours : 0,
   minutes : 0
 }
+let ticker = {
+  days : 0,
+  hours : 0,
+  minutes : 0,
+  seconds : 0,
+}
 // if no data saved (first use), initialize " " and 0s
 if(localStorage.getItem("user") === null){
   localStorage.setItem("user", JSON.stringify(user_info))
 }
 if(localStorage.getItem("timer") === null){
   localStorage.setItem("timer", JSON.stringify(timer_data));
+}
+if(localStorage.getItem("ticker") === null){
+  localStorage.setItem("ticker", JSON.stringify(ticker));
 }
 
 function showTimeLimitContainer() {
@@ -27,12 +36,14 @@ function showTimeLimitContainer() {
     console.log("clicked");
     clock.style.display='none';
     setTimeLimitButton.style.display = 'none';
+    setUserInfoButton.style.display = 'none';
     setTimeLimitContainer.style.display = 'block';
   });
   setUserInfoButton.addEventListener('click', () => {
     console.log("clicked");
     clock.style.display='none';
     setUserInfoButton.style.display = 'none';
+    setTimeLimitButton.style.display = 'none';
     setUserInfoContainer.style.display = 'block';
   });
 }
@@ -65,15 +76,13 @@ function startTimer() {
     });
     alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
   }, timeInMs);
+
+  setInterval(countdown, 500);
 }
-
-
- 
-
 
 document.addEventListener('DOMContentLoaded', () => {
   showTimeLimitContainer();
-  console.log(JSON.parse(localStorage.getItem("user")).username);
+  setInterval(update, 500);
 
   // RETRIEVE stored user info and timer data on page load.
   // only pre-filling forms
@@ -83,6 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('hours').value = JSON.parse(localStorage.getItem("timer")).hours;
   document.getElementById('minutes').value = JSON.parse(localStorage.getItem("timer")).minutes;
 
+  // initialize timer to 0000
+  document.querySelector(".day").innerText = ticker.days;
+  document.querySelector(".hour").innerText = ticker.hours;
+  document.querySelector(".minute").innerText = ticker.minutes;
+  document.querySelector(".second").innerText = ticker.seconds;
   
   // STORE user input to localStorage (Database)
   // when changed (form submission)
@@ -91,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     user_info.email = document.getElementById('email').value;
     user_info.phone = document.getElementById('phone').value;
     localStorage.setItem("user", JSON.stringify(user_info));
-    console.log(JSON.parse(localStorage.getItem("user")));
+    localStorage.setItem("ticker", JSON.stringify(ticker));
     e.preventDefault();
     document.getElementById('header__logo').click();
   })
@@ -101,11 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
     timer_data.minutes = parseInt(document.getElementById('minutes').value);
     minutes = timer_data.minutes;
     localStorage.setItem("timer", JSON.stringify(timer_data));
-    console.log(JSON.parse(localStorage.getItem("timer")));
+    localStorage.setItem("ticker", JSON.stringify(ticker));
     e.preventDefault();
     document.getElementById('header__logo').click();
   })
-
 
   document.getElementById('start-timer').addEventListener('click', () => {
     if (timerId) {
@@ -120,7 +133,6 @@ let remainingTime = Time-500;
 
 const countdown = () => {
   remainingTime -= 500;
-  console.log(remainingTime);
 
   const second = 1000;
   const minute = second * 60;
@@ -133,10 +145,16 @@ const countdown = () => {
   const textSecond = Math.floor((remainingTime % minute) / second);
 
   document.querySelector(".day").innerText = textDay > 0 ? textDay : 0;
+  ticker.days = textDay > 0 ? textDay : 0;
   document.querySelector(".hour").innerText = textHour > 0 ? textHour : 0;
+  ticker.hours = textHour > 0 ? textHour : 0;
   document.querySelector(".minute").innerText = textMinute > 0 ? textMinute : 0;
+  ticker.minutes = textMinute > 0 ? textMinute : 0;
   document.querySelector(".second").innerText = textSecond > 0 ? textSecond : 0;
+  ticker.seconds = textSecond > 0 ? textSecond : 0;
 };
 
-// should use 500 as setInterval won't always run on time.
-setInterval(countdown, 500);
+const update = ()=>{
+  console.log(JSON.stringify(ticker));
+  localStorage.setItem("ticker", JSON.stringify(ticker));
+}
