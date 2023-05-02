@@ -110,6 +110,10 @@ input[type="submit"]:hover {
   background-color: #ff1e1e;
 }
 
+.menu button {
+  margin-bottom: 10px;
+}
+
 @media screen and (max-width: 400px) {
   body {
     width: sticky;
