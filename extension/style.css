@@ -181,3 +181,95 @@ a.instruction-link {
     font-size: 20px;
   }
 }
+@media screen and (max-width: 400px){
+
+
+    .menu h1{
+        font-size: 2rem;
+    }
+
+
+    .user_form{
+        position: relative;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .timer_form{
+        position: relative;
+        justify-content: center;
+        justify-items: center;
+        
+        padding-top: 1rem;
+
+    }
+    .set-time-limit-container h2{
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .set-user-info-container h2{
+        margin-top: 100px;
+        font-size: 1rem;
+    }
+
+    .header__container{
+        font-display: #131313;
+        font-size:2rem;
+        position: absolute;
+        top:0;
+        left:0;
+        padding: 1rem;
+    }
+
+    body{
+
+        height:600px;
+        font-size: 0.75rem;
+    }
+  
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  padding: 3rem;
+}
+
+#coming-soon {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("./images/example1.jpg");
+  background-size: 100%;
+}
+
+.countdown {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 40%;
+}
+
+.day,
+.hour,
+.minute,
+.second {
+  font-size: 2rem;
+}
+
+.waiting {
+  height: 15vh;
+}
+
+  }
