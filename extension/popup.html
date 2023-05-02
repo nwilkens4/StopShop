@@ -4,22 +4,79 @@
 <head>
   <title>Stop Shop</title>
   <script src="popup.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="menu">
-    <h1>Stop Shop</h1>
-    <button id="set-time-limit">Set Time Limit</button>
-  </div>
+  <header>
+    <div class="header__container">
+      <a href="popup.html" id="header__logo">
+        <img src="slash.png" alt="Logo">
+      </a>
+      <h1 id="header__title">Stop Shop</h1>
+  </header>
 
-  <div class="set-time-limit-container" style="display:none;">
-    <h2>Set Time Limit</h2>
-    <label for="hours">Hours:</label>
-    <input type="number" id="hours" name="hours" min="0" max="23">
-    <label for="minutes">Minutes:</label>
-    <input type="number" id="minutes" name="minutes" min="0" max="59">
-    <button id="start-timer">Start Timer</button>
+  <section id="coming-soon">
+    <div>
+      <h2>Time Limit:</h2>
+      <div class="countdown">
+        <div class="container-day">
+          <h3 class="day">Time</h3>
+          <h3></h3>
+        </div>
+        <div class="container-hour">
+          <h3 class="hour">Time</h3>
+          <h3>hours</h3>
+        </div>
+        <div class="container-minute">
+          <h3 class="minute">Time</h3>
+          <h3>minutes</h3>
+        </div>
+        <div class="container-second">
+          <h3 class="second">Time</h3>
+          <h3>seconds</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="menu">
+    <button id="set-user-info">Set account info</button>
+    <button id="set-time-limit">Set time limit</button>
   </div>
+</header>
+
+<div class="set-user-info-container" style="display:none;">
+  <h2>Set account info</h2>
+  <form class="user_form">
+    <label for="name">Username:</label>
+    <input type="text" id="name" name="Username">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="Email">
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="Phone Number">
+    <input type="submit">
+  </form>
+</div>
+
+<div class="set-time-limit-container" style="display:none;">
+  <h2>Set time limit</h2>
+  <form class="timer_form">
+    <label for="hours">Hours:</label>
+    <input type="number" id="hours" name="Hours" value=0>
+    <label for="minutes">Minutes:</label>
+    <input type="number" id="minutes" name="Minutes" value=0>
+    <input type="submit" name="Save">
+  </form>
+
+</div>
+<div class="start-timer">
+  <button id="start-timer"> Start timer </button>
+</div>
+
+<a href="instructions.html" class="instruction-link">Help?</a>
+
+
 </body>
 
 </html>
+
