@@ -8,6 +8,18 @@ body {
   font-family: Arial, sans-serif;
 }
 
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#coming-soon {
+  margin-top: 100px; /* adjust as needed */
+}
+
 h1 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -17,6 +29,7 @@ h1 {
 h2 {
   font-size: 18px;
   margin-bottom: 10px;
+  margin-right:20px;
   color:#131313;
 }
 #header__logo {
@@ -131,17 +144,19 @@ a.instruction-link {
     width: sticky;
     height: 100%;
     padding: 10px;
+    display:flex;
   }
 
   .header__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
   }
 
   #header__logo img {
     height: 40px;
     margin-right: 0;
+
   }
 
   #header__title {
@@ -177,11 +192,24 @@ a.instruction-link {
     margin-right: 5px;
   }
 
-  #header__title {
-    font-size: 20px;
-  }
+ 
+  .timer_form{
+    position: relative;
+    justify-content: center;
+    justify-items: center;
+    padding-top: 1rem;
+
 }
-@media screen and (max-width: 400px){
+#coming-soon {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("./images/example1.jpg");
+  background-size: 100%;
+  
+}
 
 
     .menu h1{
@@ -224,7 +252,7 @@ a.instruction-link {
 
     body{
 
-        height:600px;
+        height:relative;
         font-size: 0.75rem;
     }
   
@@ -239,9 +267,9 @@ body {
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  padding: 3rem;
+  padding: 1rem;
 }
 
 #coming-soon {
@@ -261,15 +289,25 @@ h2 {
   margin-bottom: 40%;
 }
 
-.day,
+.day{
+  color: white;
+}
 .hour,
 .minute,
 .second {
   font-size: 2rem;
+  padding: 2rem;
 }
 
 .waiting {
   height: 15vh;
 }
 
+
+.content{
+  padding: 1rem;
+}
   }
+
+
+  
