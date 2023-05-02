@@ -114,6 +114,18 @@ input[type="submit"]:hover {
   margin-bottom: 10px;
 }
 
+a {
+  color: #131313;
+  text-decoration: underline;  
+}
+a.instruction-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+
+
 @media screen and (max-width: 400px) {
   body {
     width: sticky;

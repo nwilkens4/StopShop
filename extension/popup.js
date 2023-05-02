@@ -39,17 +39,6 @@ function startTimer() {
   const timeInMs =(( parseInt(JSON.parse(localStorage.getItem("timer")).hours) * 60 * 60) + parseInt(JSON.parse(localStorage.getItem("timer")).minutes) * 60) * 1000;
   const eightyPercentComplete = Math.floor(timeInMs * 0.8);
   const urls = ['https://www.amazon.com/*', 'https://www.ebay.com/*', 'https://www.walmart.com/*']
-  timerId = setTimeout(() => {
-    // Close the tabs
-    urls.forEach(link => {
-      chrome.tabs.query({ url: link }, (tabs) => {
-        tabs.forEach(tab => {
-          chrome.tabs.remove(tab.id);
-        });
-      });
-    });
-    alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
-  }, timeInMs);
 
   setTimeout(() => {
     const remainingTime = eightyPercentComplete / 1000; // convert to seconds
@@ -61,7 +50,20 @@ function startTimer() {
       alert(`Heads Up! You have 20% of your time remaining (${remainingHours} hours and ${remainingMinutes} minutes).`);
     }
   }, eightyPercentComplete);
+
+  timerId = setTimeout(() => {
+    // Close the tabs
+    urls.forEach(link => {
+      chrome.tabs.query({ url: link }, (tabs) => {
+        tabs.forEach(tab => {
+          chrome.tabs.remove(tab.id);
+        });
+      });
+    });
+    alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
+  }, timeInMs);
 }
+
 
  
 
