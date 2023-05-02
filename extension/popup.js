@@ -18,17 +18,20 @@ if(localStorage.getItem("timer") === null){
 }
 
 function showTimeLimitContainer() {
+  const clock = document.getElementById('coming-soon');
   const setTimeLimitButton = document.getElementById('set-time-limit');
   const setTimeLimitContainer = document.querySelector('.set-time-limit-container');
   const setUserInfoButton = document.getElementById('set-user-info');
   const setUserInfoContainer = document.querySelector('.set-user-info-container');
   setTimeLimitButton.addEventListener('click', () => {
     console.log("clicked");
+    clock.style.display='none';
     setTimeLimitButton.style.display = 'none';
     setTimeLimitContainer.style.display = 'block';
   });
   setUserInfoButton.addEventListener('click', () => {
     console.log("clicked");
+    clock.style.display='none';
     setUserInfoButton.style.display = 'none';
     setUserInfoContainer.style.display = 'block';
   });
@@ -85,8 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("user", JSON.stringify(user_info));
     console.log(JSON.parse(localStorage.getItem("user")));
     e.preventDefault();
-    document.getElementById('set-user-info').style.display = "block";
-    document.querySelector('.set-user-info-container').style.display = "none";
+    document.getElementById('header__logo').click();
   })
   document.querySelector('.timer_form').addEventListener('submit', (e) =>{
     timer_data.hours = parseInt(document.getElementById('hours').value);
@@ -96,16 +98,40 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem("timer", JSON.stringify(timer_data));
     console.log(JSON.parse(localStorage.getItem("timer")));
     e.preventDefault();
-    document.getElementById('set-time-limit').style.display = "block";
-    document.querySelector('.set-time-limit-container').style.display = "none";
+    document.getElementById('header__logo').click();
   })
 
 
-document.getElementById('start-timer').addEventListener('click', () => {
-  if (timerId) {
-    clearTimeout(timerId);
-  }
-  startTimer();
+  document.getElementById('start-timer').addEventListener('click', () => {
+    if (timerId) {
+      clearTimeout(timerId);
+    }
+    startTimer();
+  });
 });
 
-});
+const Time =(( parseInt(JSON.parse(localStorage.getItem("timer")).hours) * 60 * 60) + parseInt(JSON.parse(localStorage.getItem("timer")).minutes) * 60) * 1000;
+let remainingTime = Time-500;
+
+const countdown = () => {
+  remainingTime -= 500;
+  console.log(remainingTime);
+
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  const textDay = Math.floor(remainingTime / day);
+  const textHour = Math.floor((remainingTime % day) / hour);
+  const textMinute = Math.floor((remainingTime % hour) / minute);
+  const textSecond = Math.floor((remainingTime % minute) / second);
+
+  document.querySelector(".day").innerText = textDay > 0 ? textDay : 0;
+  document.querySelector(".hour").innerText = textHour > 0 ? textHour : 0;
+  document.querySelector(".minute").innerText = textMinute > 0 ? textMinute : 0;
+  document.querySelector(".second").innerText = textSecond > 0 ? textSecond : 0;
+};
+
+// should use 500 as setInterval won't always run on time.
+setInterval(countdown, 500);
