@@ -40,28 +40,31 @@ function startTimer() {
   const eightyPercentComplete = Math.floor(timeInMs * 0.8);
   const urls = ['https://www.amazon.com/*', 'https://www.ebay.com/*', 'https://www.walmart.com/*']
   timerId = setTimeout(() => {
-    // Close the Amazon tab
+    // Close the tabs
     urls.forEach(link => {
       chrome.tabs.query({ url: link }, (tabs) => {
-        alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
         tabs.forEach(tab => {
           chrome.tabs.remove(tab.id);
         });
       });
-    })
+    });
+    alert(`Stop Shopping! You've reached your time limit of ${timer_data.hours} hours and ${timer_data.minutes} minutes.`);
   }, timeInMs);
-  
+
   setTimeout(() => {
     const remainingTime = eightyPercentComplete / 1000; // convert to seconds
     if (remainingTime < 60) {
-      alert(`Attention! You have 20% of your time remaining (${(timeInMs - eightyPercentComplete) * 0.001} seconds).`);
+      alert(`Heads Up! You have 20% of your time remaining (${(timeInMs - eightyPercentComplete) * 0.001} seconds).`);
     } else {
       const remainingHours = Math.floor(remainingTime / 3600);
       const remainingMinutes = Math.floor((remainingTime % 3600) / 60);
-      alert(`Attention! You have 20% of your time remaining (${remainingHours} hours and ${remainingMinutes} minutes).`);
+      alert(`Heads Up! You have 20% of your time remaining (${remainingHours} hours and ${remainingMinutes} minutes).`);
     }
   }, eightyPercentComplete);
 }
+
+ 
+
 
 document.addEventListener('DOMContentLoaded', () => {
   showTimeLimitContainer();
