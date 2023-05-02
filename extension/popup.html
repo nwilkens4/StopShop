@@ -4,13 +4,23 @@
 <head>
   <title>Stop Shop</title>
   <script src="popup.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-RRD5veCuvQFO6BKquQ6S5lWRaJweJSKG4U6szTg/CpANU6zFv6HHRzCCs0yKBwPo" crossorigin="anonymous">
+
+  <script src="https://kit.fontawesome.com/8e22db69f8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+  <header>
+      <div class="header__container">
+          <a href="/popup.html" id="header__logo"><i class="fas fa-shop-slash"></i>Stop Shop</a>
+      </div>
+  </header>
+
   <div class="menu">
-    <h1>Stop Shop</h1>
     <button id="set-user-info">Set account info</button>
     <button id="set-time-limit">Set time limit</button>
+
   </div>
 
   <div class="set-user-info-container" style="display:none;">
@@ -25,6 +35,7 @@
       <input type="submit"> 
     </form>
   </div>
+
   <div class="set-time-limit-container" style="display:none;">
     <h2>Set time limit</h2>
     <form class="timer_form">
@@ -32,11 +43,12 @@
       <input type="number" id="hours" name="Hours" value=0>
       <label for="minutes">Minutes:</label>
       <input type="number" id="minutes" name="Minutes" value=0>
-      <input type="submit"> 
+      <div class="start-timer">
+        <button id="start-timer"> Start timer </button>
+      </div>
+      <input type="submit" name="Save"> 
     </form>
   </div>
-
-  <button id="start-timer"> Start timer </button>
 </body>
 
 </html>
