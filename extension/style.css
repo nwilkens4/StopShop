@@ -15,6 +15,9 @@ header{
   width: 100%;
   z-index: 1;
 }
+.set-time-limit-container {
+  margin-top: 80px; 
+}
 
 #coming-soon {
   margin-top: 100px; /* adjust as needed */
@@ -78,7 +81,7 @@ button:hover {
   background-color: #ff1e1e;
 }
 
-.set-user-info-container, .set-time-limit-container {
+.set-user-info-container, .set-tme-limit-container{
   margin-bottom: 5px;
 }
 
@@ -239,6 +242,7 @@ a.instruction-link {
     .set-user-info-container h2{
         margin-top: 100px;
         font-size: 1rem;
+
     }
 
     .header__container{
